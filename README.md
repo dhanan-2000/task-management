@@ -27,38 +27,43 @@ Ensure you have the following installed:
 ### Installation
 
 1. **Clone the repository**
-
+   ```sh
    git clone https://github.com/dhanan-2000/task-management.git
    cd task-management
-
+   ```
 
 2. **Install dependencies**
-
+   ```sh
    npm install
-
+   ```
 
 3. **Create a `.env` file** in the root folder and add:
-
+   ```env
    PORT=5000
    MONGO_URI=<your_mongo_atlas_connection_string>
    JWT_SECRET=<your_jwt_secret>
-
+   ```
 
 4. **Run the server**
-  For development:
-      npm run dev
+  Development
+  
+   ```sh
+   npm run dev  # Starts with nodemon
+   ```
+   Production 
 
-  For production:
-      npm start
+   ```sh
+   npm start  # Starts with npm 
+   ```
 
 5. **Test API using Postman**
    - Import the Postman collection (`TaskManager.postman_collection.json`) provided in the repository.
 
 ## Deployment Details
 The API is deployed on AWS and is accessible via the following base URL:
-
+```sh
 http://51.20.12.227:5000
-
+```
 
 ## API Endpoints
 
