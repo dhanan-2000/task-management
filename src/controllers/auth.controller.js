@@ -5,6 +5,7 @@ const structuredResponse = require("../utils/response");
 
 
 const registerUser = async (req, res) => {
+    console.log("JWT_SECRET on register:", process.env.JWT_SECRET);
   try {
     const { username, email, password } = req.body;
 
@@ -12,7 +13,7 @@ const registerUser = async (req, res) => {
     if (user) return structuredResponse(res, 400, false, "User already exists");
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
+ 
     user = new UserModel({ username, email, password: hashedPassword });
     await user.save();
 
@@ -29,15 +30,18 @@ const registerUser = async (req, res) => {
 
 
 const loginUser = async (req, res) => {
+    console.log("JWT_SECRET:", process.env.JWT_SECRET);
   try {
     const { email, password } = req.body;
 
   
     const user = await UserModel.findOne({ email });
+    console.log("user", user);
     if (!user) return structuredResponse(res, 400, false, "Invalid credentials");
 
- 
+    console.log("password", password , user.password);
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("isMatch", isMatch);
     if (!isMatch) return structuredResponse(res, 400, false, "Invalid credentials");
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
