@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const { authRoutes, taskRoutes } = require("./routes");
-const { authMiddleware } = require("./middleware");
+
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-// app.use("/api/tasks", authenticateJWT, taskRoutes);
+app.use("/api/tasks",taskRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI).then(() => {
