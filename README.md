@@ -63,6 +63,7 @@ Ensure you have the following installed:
 The API is deployed on AWS and is accessible via the following base URL:
 ```sh
 http://51.20.12.227:5000
+
 ```
 
 ## API Endpoints
